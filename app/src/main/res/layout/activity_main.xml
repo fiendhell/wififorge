@@ -29,11 +29,18 @@
         android:layout_height="wrap_content"
         android:text="Начать перебор"/>
 
-    <TextView
-        android:id="@+id/txtLog"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="120dp"
-        android:scrollbars="vertical"
-        android:textSize="12sp"
-        android:fontFamily="monospace"/>
+        android:layout_height="150dp"
+        android:background="#1E1E1E"
+        android:padding="8dp">
+
+        <TextView
+            android:id="@+id/txtLog"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#00FF00"
+            android:textSize="12sp"
+            android:fontFamily="monospace"/>
+    </ScrollView>
 </LinearLayout>
