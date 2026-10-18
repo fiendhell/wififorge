@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <Button
+        android:id="@+id/btnScan"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Сканировать сети"/>
+
+    <ListView
+        android:id="@+id/listNets"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+
+    <EditText
+        android:id="@+id/inputTarget"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="SSID цели"/>
+
+    <Button
+        android:id="@+id/btnAttack"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Начать перебор"/>
+
+    <TextView
+        android:id="@+id/txtLog"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:scrollbars="vertical"
+        android:textSize="12sp"
+        android:fontFamily="monospace"/>
+</LinearLayout>
