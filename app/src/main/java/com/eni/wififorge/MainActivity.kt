@@ -1,7 +1,10 @@
 package com.eni.wififorge
 
 import android.Manifest
+import android.content.Context
 import android.os.Bundle
+import android.text.method.ScrollingMovementMethod
+import android.view.inputmethod.InputMethodManager
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
@@ -25,6 +28,7 @@ class MainActivity : AppCompatActivity() {
 
         scanner = WifiScanner(this)
         logView = findViewById(R.id.txtLog)
+        logView.movementMethod = ScrollingMovementMethod()
         engine = BruteEngine(scanner) { msg -> runOnUiThread { appendLog(msg) } }
 
         val list = findViewById<ListView>(R.id.listNets)
@@ -45,13 +49,19 @@ class MainActivity : AppCompatActivity() {
         findViewById<Button>(R.id.btnAttack).setOnClickListener {
             val target = findViewById<EditText>(R.id.inputTarget).text.toString()
             if (target.isBlank()) { appendLog("Укажи SSID цели"); return@setOnClickListener }
+
+            val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            imm.hideSoftInputFromWindow(currentFocus?.windowToken, 0)
+
             engine.start(target, lifecycleScope)
         }
     }
 
     private fun appendLog(msg: String) {
         logView.append("$msg\n")
-        val scroll = logView.parent as? ScrollView
-        scroll?.post { scroll.fullScroll(ScrollView.FOCUS_DOWN) }
+        val scrollAmount = logView.layout?.getLineTop(logView.lineCount)?.minus(logView.height) ?: 0
+        if (scrollAmount > 0) {
+            logView.scrollTo(0, scrollAmount)
+        }
     }
 }
