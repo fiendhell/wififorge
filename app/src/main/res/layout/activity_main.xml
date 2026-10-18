@@ -14,8 +14,7 @@
     <ListView
         android:id="@+id/listNets"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"/>
+        android:layout_height="150dp"/>
 
     <EditText
         android:id="@+id/inputTarget"
@@ -29,18 +28,15 @@
         android:layout_height="wrap_content"
         android:text="Начать перебор"/>
 
-    <ScrollView
+    <TextView
+        android:id="@+id/txtLog"
         android:layout_width="match_parent"
-        android:layout_height="150dp"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:background="#1E1E1E"
-        android:padding="8dp">
-
-        <TextView
-            android:id="@+id/txtLog"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="#00FF00"
-            android:textSize="12sp"
-            android:fontFamily="monospace"/>
-    </ScrollView>
+        android:padding="8dp"
+        android:scrollbars="vertical"
+        android:textColor="#00FF00"
+        android:textSize="12sp"
+        android:fontFamily="monospace"/>
 </LinearLayout>
