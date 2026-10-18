@@ -3,7 +3,6 @@ package com.eni.wififorge
 import android.Manifest
 import android.content.Context
 import android.os.Bundle
-import android.text.method.ScrollingMovementMethod
 import android.view.inputmethod.InputMethodManager
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
@@ -28,7 +27,6 @@ class MainActivity : AppCompatActivity() {
 
         scanner = WifiScanner(this)
         logView = findViewById(R.id.txtLog)
-        logView.movementMethod = ScrollingMovementMethod()
         engine = BruteEngine(scanner) { msg -> runOnUiThread { appendLog(msg) } }
 
         val list = findViewById<ListView>(R.id.listNets)
@@ -58,10 +56,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun appendLog(msg: String) {
-        logView.append("$msg\n")
-        val scrollAmount = logView.layout?.getLineTop(logView.lineCount)?.minus(logView.height) ?: 0
-        if (scrollAmount > 0) {
-            logView.scrollTo(0, scrollAmount)
-        }
+        // Новые строки добавляются в начало, чтобы всегда был виден прогресс
+        logView.text = "$msg\n" + logView.text
     }
 }
